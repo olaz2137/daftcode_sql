@@ -29,6 +29,6 @@ async def categories():
 @app.get("/customers")
 async def customers():
     app.db_connection.row_factory = sqlite3.Row
-    customers = app.db_connection.execute("SELECT CustomerID, ContactName, CONCAT(Address, PostalCode, City, Country) AS ConcatenatedString FROM Customers").fetchall()
+    customers = app.db_connection.execute("SELECT CustomerID, ContactName, Address || ' ' || PostalCode || ' '|| City ||' '|| Country AS ConcatenatedString FROM Customers").fetchall()
     return {"customers" : [{"id": x['CustomerID'], "name": x['ContactName'], "full_adress": x['ConcatenatedString']} for x in customers]}
 
