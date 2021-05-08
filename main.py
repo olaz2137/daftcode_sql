@@ -29,6 +29,6 @@ async def categories():
 @app.get("/customers")
 async def customers():
     app.db_connection.row_factory = sqlite3.Row
-    customers = app.db_connection.execute("SELECT CustomerID, CustomerName, Adress, PostalCode, City, Country FROM Customers").fetchall()
+    customers = app.db_connection.execute("SELECT CustomerID, ContactName, Adress, PostalCode, City, Country FROM Customers").fetchall()
     return {"customers" : [{"id": x['CustomerID'], "name": x['CustomerName'], "full_adress": f"{x['Adress']} {x['PostalCode']} {x['City']} {x['Country']}"} for x in customers]}
 
