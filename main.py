@@ -19,11 +19,9 @@ async def startup():
 async def shutdown():
     app.db_connection.close()
 
-
-@app.get("/products")
-async def products():
-    products = app.db_connection.execute("SELECT ProductName FROM Products").fetchall()
-    return {
-        "products": products,
-        "products_counter": len(products)
-    }
+#4.1
+@app.get("/categories")
+async def categories():
+    app.db_connection.row_factory = sqlite3.Row
+    categories = app.db_connection.execute("SELECT CategoryID, CategoryName FROM Categories").fetchall()
+    return ["categories" : {"id": f"{x['CategoryID']}", "name": f"{x['Categoryname']}"} for x in categories]
