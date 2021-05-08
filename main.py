@@ -24,4 +24,4 @@ async def shutdown():
 async def categories():
     app.db_connection.row_factory = sqlite3.Row
     categories = app.db_connection.execute("SELECT CategoryID, CategoryName FROM Categories").fetchall()
-    return ["categories" : {"id": f"{x['CategoryID']}", "name": f"{x['Categoryname']}"} for x in categories]
+    return {"categories" : [{"id": x['CategoryID'], "name": x['CategoryName']} for x in categories]}
