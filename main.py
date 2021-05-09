@@ -68,3 +68,47 @@ async def orders(id:int):
     if data == []:
         raise HTTPException(status_code=404, detail="Item not found")
     return {"orders":data}
+
+#4.6
+class Category(BaseModel):
+    name:str
+
+@app.post("/categories",status_code = 201)
+async def post_categories(category: Category):
+    cursor = app.db_connection.execute(
+        f"INSERT INTO Categories (CategoryName) VALUES ('{category.name}')"
+    )
+    app.db_connection.commit()
+    return {
+        "id": cursor.lastrowid,
+        "name": category.category_name
+    }
+
+@app.put("/categories/{id}")
+async def put_categories(*,id:int,category: Category):
+    app.db_connection.row_factory = sqlite3.Row
+    data = app.db_connection.execute(
+        "SELECT* FROM Categories WHERE CategoryID =?",(id,)).fetchone()
+    if data is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    cursor = app.db_connection.execute(
+        "UPDATE Categories SET CategoryName = ? WHERE CategoryID = ?",(category.name, id,)
+    )
+    app.db_connection.commit()
+    return {
+        "id": id,
+        "name": category.category_name
+    }
+
+@app.delete("/categories/{id}")
+async def delete_categories(id:int):
+    app.db_connection.row_factory = sqlite3.Row
+    data = app.db_connection.execute(
+        "SELECT* FROM Categories WHERE CategoryID = :id",{"id":id}).fetchone()
+    if data is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    cursor = app.db_connection.execute(
+        "DELETE FROM Categories WHERE CategoryID = :id", {"id":id}
+    )
+    app.db_connection.commit()
+    return {"deleted": cursor.rowcount}
