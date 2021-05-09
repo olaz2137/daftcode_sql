@@ -81,7 +81,7 @@ async def post_categories(category: Category):
     app.db_connection.commit()
     return {
         "id": cursor.lastrowid,
-        "name": category.category_name
+        "name": category.name
     }
 
 @app.put("/categories/{id}")
@@ -97,7 +97,7 @@ async def put_categories(*,id:int,category: Category):
     app.db_connection.commit()
     return {
         "id": id,
-        "name": category.category_name
+        "name": category.name
     }
 
 @app.delete("/categories/{id}")
