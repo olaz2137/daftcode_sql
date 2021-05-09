@@ -43,11 +43,11 @@ async def products(id:int):
 
 #4.3
 @app.get("/employees")
-async def employees(*, limit:int = -1, offset:int = 0, order:str = Query(None)):
-    if order not in {"first_name","last_name","city",None}:
+async def employees(*, limit:int = -1, offset:int = 0, order:str = ""):
+    if order not in {"first_name","last_name","city",""}:
         raise HTTPException(status_code=400, detail="Bad Request")
-    if order is None:
+    if order == "":
         order = 'id'
     app.db_connection.row_factory = sqlite3.Row
-    data = app.db_connection.execute("SELECT EmployeeID AS id,LastName AS last_name , FirstName AS first_name , City as city FROM Employees ORDER BY :order LIMIT :limit OFFSET :offset",{'order':order,'limit':limit,'offset':offset}).fetchall()
+    data = app.db_connection.execute(f"SELECT EmployeeID AS id,LastName AS last_name , FirstName AS first_name , City as city FROM Employees ORDER BY {order} LIMIT :limit OFFSET :offset",{'limit':limit,'offset':offset}).fetchall()
     return {"employees":data}
