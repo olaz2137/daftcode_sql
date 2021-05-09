@@ -23,12 +23,12 @@ async def shutdown():
 @app.get("/categories")
 async def categories():
     app.db_connection.row_factory = sqlite3.Row
-    categories = app.db_connection.execute("SELECT CategoryID, CategoryName FROM Categories").fetchall()
-    return {"categories" : [{"id": x['CategoryID'], "name": x['CategoryName']} for x in categories]}
+    data = app.db_connection.execute("SELECT CategoryID, CategoryName FROM Categories").fetchall()
+    return {"categories" : [{"id": x['CategoryID'], "name": x['CategoryName']} for x in data]}
 
 @app.get("/customers")
 async def customers():
     app.db_connection.row_factory = sqlite3.Row
-    customers = app.db_connection.execute("SELECT CustomerID, CompanyName, Address || ' ' || PostalCode || ' '|| City ||' '|| Country AS ConcatenatedString FROM Customers ORDER BY CustomerID").fetchall()
-    return {"customers" : [{"id": x['CustomerID'], "name": x['CompanyName'], "full_address": x['ConcatenatedString']} for x in customers]}
+    data = app.db_connection.execute("SELECT CustomerID, CompanyName, Address || ' ' || PostalCode || ' '|| City ||' '|| Country AS ConcatenatedString FROM Customers ORDER BY CustomerID").fetchall()
+    return {"customers" : [{"id": x['CustomerID'], "name": x['CompanyName'], "full_address": x['ConcatenatedString']} for x in data]}
 
