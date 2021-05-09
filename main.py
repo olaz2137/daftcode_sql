@@ -32,3 +32,12 @@ async def customers():
     data = app.db_connection.execute("SELECT CustomerID, CompanyName, Address || ' ' || PostalCode || ' '|| City ||' '|| Country AS ConcatenatedString FROM Customers ORDER BY CustomerID").fetchall()
     return {"customers" : [{"id": x['CustomerID'], "name": x['CompanyName'], "full_address": x['ConcatenatedString']} for x in data]}
 
+#4.2
+@app.get("/products/{id}")
+async def products(id:int):
+    app.db_connection.row_factory = sqlite3.Row
+    data = app.db_connection.execute("SELECT ProductID as id, ProductName as name FROM Products WHERE ProductID = :id",{'id': id}).fetchone()
+    if data is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return data
+
