@@ -59,3 +59,12 @@ async def products_extended():
     data = app.db_connection.execute("SELECT Products.ProductID as id, Products.ProductName as name, Categories.CategoryName as category, Suppliers.CompanyName as supplier FROM Products JOIN Categories ON Products.CategoryID = Categories.CategoryID , Suppliers ON Products.SupplierID = Suppliers.SupplierID ORDER BY id").fetchall()
 
     return {"products_extended":data}
+
+#4.5
+@app.get("/products/{id}/orders")
+async def orders(id:int):
+    app.db_connection.row_factory = sqlite3.Row
+    data = app.db_connection.execute("SELECT Orders.OrderId AS id, Customers.CompanyName AS customer, [Order Details].Quantity AS quantity, (([Order Details].UnitPrice*quantity)-([Order Details].Discount*[Order Details].UnitPrice*quantity)) AS total_price FROM Orders JOIN ([Order Details] JOIN Products ON [Order Details].ProductID = Products.ProductID) ON [Order Details].OrderID = Orders.OrderID, Customers ON Customers.CustomerID = Orders.CustomerID  WHERE Products.ProductID = :id",{'id': id}).fetchall()
+    if data is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return data
