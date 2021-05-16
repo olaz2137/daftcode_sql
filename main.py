@@ -114,7 +114,7 @@ async def delete_categories(id:int):
     return {"deleted": cursor.rowcount}
 #5
 
-from fastapi import FastAPI
+#from fastapi import FastAPI
 
 from .views import router as northwind_api_router
 
