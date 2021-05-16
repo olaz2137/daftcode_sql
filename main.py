@@ -124,18 +124,11 @@ SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-from sqlalchemy import (
-    Column,
-    SmallInteger,
-    String,
-)
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
-metadata = Base.metadata
-class Shipper(Base):
-    __tablename__ = "shippers"
-
-    ShipperID = Column(SmallInteger, primary_key=True)
-    CompanyName = Column(String(40), nullable=False)
-    Phone = Column(String(24))
+# Dependency
+def get_db():
+    try:
+        db = SessionLocal()
+        yield db
+    finally:
+        db.close()
