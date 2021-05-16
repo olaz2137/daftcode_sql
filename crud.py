@@ -9,5 +9,5 @@ def get_suppliers(db: Session):
 
 def get_supplier(db: Session, id: int):
     return (
-        db.query(models.Supplier).filter(models.Supplierr.SupplierID == id).first()
+        db.query(models.Supplier).filter(models.Supplier.SupplierID == id).first()
     )
