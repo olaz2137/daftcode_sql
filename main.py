@@ -114,21 +114,10 @@ async def delete_categories(id:int):
     return {"deleted": cursor.rowcount}
 #5
 
-import os
+from fastapi import FastAPI
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from .views import router as northwind_api_router
 
-SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
+app = FastAPI()
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-
-# Dependency
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+app.include_router(northwind_api_router, tags=["northwind"])
