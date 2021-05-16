@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@olaz2137 
-daftcode
-/
-daftacademy-python_levelup-spring2021
-13
-2010
-Code
-Issues
-6
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-daftacademy-python_levelup-spring2021/5_O_jak_ORM/app/app/models.py /
-
-Mateusz Leszczynski migracje, apka, docker-compose, dump.
-Latest commit e6a4939 4 days ago
- History
- 0 contributors
-177 lines (134 sloc)  4.84 KB
-  
 from sqlalchemy import (
     Column,
     Date,
@@ -206,16 +175,3 @@ class Territory(Base):
     TerritoryID = Column(String(20), primary_key=True)
     TerritoryDescription = Column(NullType, nullable=False)
     RegionID = Column(SmallInteger, nullable=False)
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
