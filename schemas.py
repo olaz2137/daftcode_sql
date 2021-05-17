@@ -14,7 +14,7 @@ class Supplier(BaseModel):
     Country = constr(max_length=15)
     Phone = constr(max_length=24)
     Fax = constr(max_length=24))
-    HomePage = AnyUrl
+    HomePage = str
     
     class Config:
         orm_mode = True
