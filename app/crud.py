@@ -4,7 +4,7 @@ from . import models
 
 
 def get_suppliers(db: Session):
-    return db.query(models.Supplier).all()
+    return db.query(models.Suppliers).all()
 
 
 def get_supplier(db: Session, supplier_id: int):
