@@ -1,5 +1,5 @@
 from pydantic import BaseModel, PositiveInt, constr, AnyUrl
-
+from typing import Optional
 
 class Supplier(BaseModel):
 
