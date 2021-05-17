@@ -13,7 +13,7 @@ class Supplier(BaseModel):
     PostalCode = constr(max_length=10)
     Country = constr(max_length=15)
     Phone = constr(max_length=24)
-    Fax = constr(max_length=24))
+    Fax = constr(max_length=24)
     HomePage = str
     
     class Config:
