@@ -167,12 +167,6 @@ class Supplier(Base):
     Phone = Column(String(24))
     Fax = Column(String(24))
     HomePage = Column(Text)
-    
-class Suppliers(Base):
-    __tablename__ = "suppliers"
-
-    SupplierID = Column(SmallInteger, primary_key=True)
-    CompanyName = Column(String(40), nullable=False)
 
 
 class Territory(Base):
