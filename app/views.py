@@ -18,6 +18,6 @@ async def get_supplier(supplier_id: PositiveInt, db: Session = Depends(get_db)):
     return db_supplier
 
 
-@router.get("/suppliers", response_model=List[schemas.Supplier])
+@router.get("/suppliers", response_model=List[schemas.Suppliers])
 async def get_suppliers(db: Session = Depends(get_db)):
     return crud.get_suppliers(db)
