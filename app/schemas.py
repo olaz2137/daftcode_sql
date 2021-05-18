@@ -40,7 +40,7 @@ class SupplierProducts(BaseModel):
     
     ProductID: int
     ProductName: str
-    Category: Optional[Category]
+    Category: Category
     Discontinued: int
     
     class Config:
