@@ -31,7 +31,7 @@ class Suppliers(BaseModel):
         
 class Category(BaseModel):
     CategoryID: PositiveInt
-    CategoryName: str
+    CategoryName: Optional[constr(max_length=15)]
 
     class Config:
         orm_mode = True
