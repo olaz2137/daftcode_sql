@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
 from . import models
-
+from .schemas import NewRecord
 
 def get_suppliers(db: Session):
     return db.query(models.Supplier).all()
