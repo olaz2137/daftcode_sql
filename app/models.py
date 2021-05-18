@@ -121,7 +121,7 @@ class Product(Base):
 
     ProductID = Column(SmallInteger, primary_key=True)
     ProductName = Column(String(40), nullable=False)
-    SupplierID = Column(SmallInteger)
+    SupplierID = Column(SmallInteger, ForeignKey("suppliers.SupplierID"))
     CategoryID = Column(SmallInteger, ForeignKey("categories.CategoryID"))
     QuantityPerUnit = Column(String(20))
     UnitPrice = Column(Float)
@@ -130,6 +130,7 @@ class Product(Base):
     ReorderLevel = Column(SmallInteger)
     Discontinued = Column(Integer, nullable=False)
     
+    supplier = relationship('Supplier', back_populates='products')
     Category = relationship('Category', back_populates='products')
 
 
