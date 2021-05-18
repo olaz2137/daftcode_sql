@@ -26,6 +26,7 @@ class Category(Base):
     Description = Column(Text)
     Picture = Column(LargeBinary)
 
+    products = relationship('Product', back_populates='Category')
 
 class Customercustomerdemo(Base):
     __tablename__ = "customercustomerdemo"
