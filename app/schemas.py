@@ -31,10 +31,10 @@ class Suppliers(BaseModel):
         
 class SupplierProducts(BaseModel):
     
-    ProductID = PositiveInt
-    ProductName = Optional[constr(max_length=40)]
-    CategoryID = Optional[int]
-    Discontinued = Optional[int]
+    ProductID = int
+    ProductName = str
+    CategoryID = Optional[Category]
+    Discontinued = int
     
     class Config:
         orm_mode = True
