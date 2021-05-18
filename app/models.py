@@ -172,6 +172,8 @@ class Supplier(Base):
     Phone = Column(String(24))
     Fax = Column(String(24))
     HomePage = Column(Text)
+    
+    products = relationship('Product', back_populates='supplier')
 
 
 class Territory(Base):
