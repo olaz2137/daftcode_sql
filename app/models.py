@@ -11,6 +11,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.sqltypes import NullType
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 metadata = Base.metadata
