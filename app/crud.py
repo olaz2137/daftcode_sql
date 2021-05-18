@@ -17,7 +17,7 @@ def get_supplier_products(db: Session, supplier_id:int):
 
 def post_suppliers(db: Session, new_record: NewRecord):
     new_record_id = db.query(models.Supplier).count()+1
-    new_record_result = models.Supplier(SupplierID = new_record_id, CompanyName = new_srecord.CompanyName, ContactName = new_record.ContactName,
+    new_record_result = models.Supplier(SupplierID = new_record_id, CompanyName = new_record.CompanyName, ContactName = new_record.ContactName,
                                           ContactTitle = new_record.ContactTitle,
                                           Address = new_record.Address,
                                           City = new_record.City,
