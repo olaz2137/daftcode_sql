@@ -30,7 +30,7 @@ class Suppliers(BaseModel):
         orm_mode = True
         
 class Category(BaseModel):
-    CategoryID: int
+    CategoryID: PositiveInt
     CategoryName: str
 
     class Config:
