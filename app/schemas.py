@@ -30,18 +30,18 @@ class Suppliers(BaseModel):
         orm_mode = True
         
 class Category(BaseModel):
-    category_id: int
-    category_name: str
+    CategoryID: PositiveInt
+    CategoryName: str
 
     class Config:
         orm_mode = True
         
 class SupplierProducts(BaseModel):
     
-    product_id: int
-    product_name: str
-    category: Optional[Category]
-    discontinued: int
+    ProductID: PositiveInt
+    ProductName: str
+    Category: Optional[Category]
+    Discontinued: PositiveInt
     
     class Config:
         orm_mode = True
