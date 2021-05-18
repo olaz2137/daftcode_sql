@@ -38,10 +38,10 @@ class Category(BaseModel):
         
 class SupplierProducts(BaseModel):
     
-    ProductID : PositiveInt
+    ProductID : Optional[PositiveInt]
     ProductName : Optional[constr(max_length=40)]
     Category : Optional[Category]
-    Discontinued : PositiveInt
+    Discontinued : Optional[PositiveInt]
     
     class Config:
         orm_mode = True
