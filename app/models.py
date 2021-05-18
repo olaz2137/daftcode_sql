@@ -127,6 +127,8 @@ class Product(Base):
     UnitsOnOrder = Column(SmallInteger)
     ReorderLevel = Column(SmallInteger)
     Discontinued = Column(Integer, nullable=False)
+    
+    Category = relationship('Category', back_populates='products')
 
 
 class Region(Base):
